@@ -16,7 +16,7 @@ calling the protoc compiler on the command line. The tool Buf greatly simplifies
 First we need to configure Buf with the correct dependencies and proto source roots. Create a file `buf.yaml` in the `grpc-beer-gateway/` directory with the following content.
 ```yaml
 version: v1beta1
-name: github.com/lreimer/jotb-workshop
+name: github.com/qaware/jotb-workshop
 deps:
   # add proto definitions for Google APIs as dependency
   - buf.build/beta/googleapis
@@ -116,11 +116,11 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
 		};
 		license: {
 			name: "MIT";
-			url: "https://github.com/lreimer/jotb-workshop/blob/master/LICENSE";
+			url: "https://github.com/qaware/jotb-workshop/blob/master/LICENSE";
 		};		
 	};
 	external_docs: {
-		url: "https://github.com/lreimer/jotb-workshop/grpc-beer-gateway";
+		url: "https://github.com/qaware/jotb-workshop/grpc-beer-gateway";
 		description: "Beer Service gRPC Gateway";
 	}
 	schemes: HTTP;
