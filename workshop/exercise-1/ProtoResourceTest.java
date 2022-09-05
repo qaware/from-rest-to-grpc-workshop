@@ -15,7 +15,7 @@ public class ProtoResourceTest {
                 .contentType(ProtocolBufferMediaType.APPLICATION_PROTOBUF)
                 .accept(ProtocolBufferMediaType.APPLICATION_PROTOBUF)
                 .body(BeerProtos.GetBeersRequest.newBuilder().build().toByteArray())
-                .when().post("/api/proto")
+                .when().post("/api/proto/getBeers")
                 .then()
                 .statusCode(200);
     }

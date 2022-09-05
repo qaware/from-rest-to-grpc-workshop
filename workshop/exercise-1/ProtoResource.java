@@ -20,6 +20,7 @@ public class ProtoResource {
     BeerRepository repository;
 
     @POST
+    @Path("/getBeers")
     public GetBeersResponse getBeers(GetBeersRequest request) {
         // TODO add individual beers to response
         Log.info("Getting all Protobuf beers");
@@ -27,6 +28,7 @@ public class ProtoResource {
     }
 
     @POST
+    @Path("/getBeer")
     public GetBeerResponse getBeer(GetBeerRequest request) {
         Beer beer = repository.find(request.getAsin());
         return GetBeerResponse.newBuilder()
@@ -41,6 +43,7 @@ public class ProtoResource {
     }
 
     @POST
+    @Path("/createBeer")
     public Response createBeer(CreateBeerRequest request) {
         // maybe implement mapping using MapStruct
         repository.create(new Beer(
