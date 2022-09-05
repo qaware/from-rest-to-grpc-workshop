@@ -38,19 +38,19 @@ Open the `build.gradle` file and extend it with the following content:
 ```groovy
 plugins {
     // add this to the plugins section
-    id "com.google.protobuf" version "0.8.18"
+    id "com.google.protobuf" version "0.8.19"
 }
 
 dependencies {
     // add this to the dependencies
-    implementation 'com.google.protobuf:protobuf-java:3.19.4'
+    implementation 'com.google.protobuf:protobuf-java:3.21.5'
 }
 
 protobuf {
     // Configure the protoc executable
     protoc {
         // Download from repositories
-        artifact = 'com.google.protobuf:protoc:3.19.4'
+        artifact = 'com.google.protobuf:protoc:3.21.5'
     }
 }
 
