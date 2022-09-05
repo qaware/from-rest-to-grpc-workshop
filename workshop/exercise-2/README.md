@@ -194,11 +194,17 @@ with the following location: http://localhost:16969
 Connect to the address `grpc-beer-service:9090` and upload the Protobuf files from the `src/main/proto` directory.
 Then you can select and call the individual gRPC services.
 
+You may also enable the gRPC Server Reflection Protocol instead, by setting `quarkus.grpc.server.enable-reflection-service=true` in the application.properties file of the `quarkus-beer-grpc` project.
+See also: https://quarkus.io/guides/grpc-service-implementation#reflection-service
+
+
+
 ## Bonus: gRPC Nginx LoadBalancer
 
 To implement a load balancer for gRPC services, we can use an Nginx server and configure it accordingly, so that it
 listens for HTTP/2 requests on a given port and forwards the calls to our gRPC beer service backend.
 
+Add the following to the `nginx.conf` file in the `grpc-beer-nginx` project:
 ```
 upstream grpc_server {
   server grpc-beer-service:9090;
