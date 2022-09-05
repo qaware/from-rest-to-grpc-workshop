@@ -100,7 +100,7 @@ service BeerService {
 }
 ```
 
-Additionally, we can generated an OpenAPI v2 definition as well. Again, we need to enhance the proto file with
+Additionally, we can generate an OpenAPI v2 definition as well. Again, we need to enhance the proto file with
 additional options. Extend the `proto/beer.proto` with the following content:
 ```proto
 import "protoc-gen-openapiv2/options/annotations.proto";

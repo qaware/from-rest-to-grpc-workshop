@@ -22,7 +22,7 @@ This workshop focuses on modern and efficient Inter Process Communication (IPC) 
 
 ## Requirements
 - Solid Java programming skills, experience in languages like Go or TypeScript are not required but useful
-- Working Java Development environment with IDE (IntelliJ, VS.code) and JDK 11
+- Working Java Development environment with IDE (IntelliJ, VS.code) and JDK 17
 - Local Docker & Kubernetes Installation, e.g. Docker Desktop, Minikube, Rancher Desktop, or similar
 - Additional small CLI tools (Kubectl, Skaffold or Tilt, Buf) but can be installed during workshop
 
