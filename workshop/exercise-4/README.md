@@ -64,7 +64,7 @@ The process of generating the required JavaScript and TS sources from the Proto 
 First we need to configure Buf with the correct dependencies and proto source roots. Create a file `buf.yaml` in the `grpc-beer-javascript/` directory with the following content.
 ```yaml
 version: v1beta1
-name: github.com/qaware/jotb-workshop
+name: github.com/qaware/from-rest-to-grpc-workshop
 deps:
   - buf.build/beta/googleapis
 build:

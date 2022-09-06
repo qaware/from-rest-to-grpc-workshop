@@ -1,5 +1,5 @@
 version: v1beta1
-name: github.com/qaware/jotb-workshop
+name: github.com/qaware/from-rest-to-grpc-workshop
 deps:
   - buf.build/beta/googleapis
   - buf.build/grpc-ecosystem/grpc-gateway
