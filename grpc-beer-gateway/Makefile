@@ -14,10 +14,10 @@ image:
 .PHONY: build
 build: $(NAME)
 
-$(NAME): proto/beer.pb.go
+$(NAME): gen/go/proto/beer.pb.go
 	go build 
 
-proto/beer.pb.go:
+gen/go/proto/beer.pb.go:
 	buf generate
 
 .PHONY: install-grpc-gateway
@@ -30,7 +30,4 @@ install-grpc-gateway:
 
 .PHONY: clean
 clean:
-	rm -f proto/**/*.pb.go
-	rm -f proto/**/*.pb.gw.go
-	rm -rf openapiv2
-	rm -f $(NAME)
+	rm -rf gen
