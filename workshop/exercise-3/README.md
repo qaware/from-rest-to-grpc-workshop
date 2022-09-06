@@ -44,6 +44,12 @@ plugins:
   - name: openapiv2
     out: gen/openapiv2
 ```
+Also create a file `buf.work.yaml` with the following content:
+```yaml
+version: v1
+directories:
+  - proto
+```
 
 Finally, you have to run `buf generate` in the `grpc-beer-gateway/` directory to generate all the artifacts from the proto file.
 
@@ -133,6 +139,9 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
 ```
 
 After you have run `buf generate` in the `grpc-beer-gateway/` directory, you will find the generated OpenAPI V2 file in `gen/openapiv2/proto`. Just paste it at `https://editor.swagger.io/` to see if it works.
+
+If your IDE complains that the newly added imports can't be resolved, you can fix this by copying the folders `google` and `protoc-gen-openapiv2` into the `proto` folder of the `grpc-beer-gateway/` directory.
+For `Buf` this is not necessary as those dependencies are already listed in the `buf.yaml` file.
 
 ## Build and Deploy gRPC Gateway
 
