@@ -8,6 +8,10 @@ gRPC-Gateway is a plugin of protoc. It reads a gRPC service definition and gener
 
 To setup your Go environment, follow the instructions found at https://github.com/grpc-ecosystem/grpc-gateway#installation
 
+go install will install into $GOPATH/bin, make sure that it is in your $PATH. If not: `export PATH="$PATH:$(go env GOPATH)/bin"`
+Otherwise buf generate will complain about missing plugins.
+
+
 ## Code Generation using Buf
 
 The process of generating the required Go sources from the Proto files is a bit tedious when done by hand or
@@ -15,43 +19,39 @@ calling the protoc compiler on the command line. The tool Buf greatly simplifies
 
 First we need to configure Buf with the correct dependencies and proto source roots. Create a file `buf.yaml` in the `grpc-beer-gateway/` directory with the following content.
 ```yaml
-version: v1beta1
-name: github.com/qaware/from-rest-to-grpc-workshop
+version: v1
 deps:
   # add proto definitions for Google APIs as dependency
-  - buf.build/beta/googleapis
+  - buf.build/googleapis/googleapis
   # add proto definitions for gRPC gateway as dependency
   - buf.build/grpc-ecosystem/grpc-gateway
-build:
-  roots:
-    - proto
 ```
 
 Next we need to configure the different protoc plugins used to generate the required Go source files as well as an OpenAPIv2 definition of the REST interface. Create a file `buf.gen.yaml` in the `grpc-beer-gateway/` directory with the following content. 
 ```yaml
-version: v1beta1
+version: v1
 plugins:
   - name: go
-    out: proto
+    out: gen/go
     opt: paths=source_relative
   - name: go-grpc
-    out: proto
+    out: gen/go
     opt: paths=source_relative
   - name: grpc-gateway
-    out: proto
-    opt: 
-     - paths=source_relative
-     - generate_unbound_methods=true
+    out: gen/go
+    opt:
+      - paths=source_relative
+      - generate_unbound_methods=true
   - name: openapiv2
-    out: openapiv2
+    out: gen/openapiv2
 ```
 
-Finally, you have to run `buf generate` to generate all the artifacts from the proto file.
+Finally, you have to run `buf generate` in the `grpc-beer-gateway/` directory to generate all the artifacts from the proto file.
 
 ## Enhance gRPC Service with Google HTTP API options
 
 The gRPC service definition needs to be enhanced with service specific options to configure how the gRPC messages
-are mapped to and from the HTTP body and path elements. Extend the `proto/beer.proto` with the following content:
+are mapped to and from the HTTP body and path elements. Extend the `proto/beer.proto` in the `grpc-beer-gateway/` directory with the following content:
 
 ```proto
 import "google/api/annotations.proto";
@@ -100,8 +100,11 @@ service BeerService {
 }
 ```
 
+After that you have to run `buf generate` in the `grpc-beer-gateway/` directory again.
+
+
 Additionally, we can generate an OpenAPI v2 definition as well. Again, we need to enhance the proto file with
-additional options. Extend the `proto/beer.proto` with the following content:
+additional options. Extend the `proto/beer.proto` in the `grpc-beer-gateway/` directory with the following content:
 ```proto
 import "protoc-gen-openapiv2/options/annotations.proto";
 
@@ -129,6 +132,8 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
 	produces: "application/json";
 };
 ```
+
+After you have run `buf generate` in the `grpc-beer-gateway/` directory, you will find the generated OpenAPI V2 file in `gen/openapiv2/proto`. Just paste it at `https://editor.swagger.io/` to see if it works.
 
 ## Build and Deploy gRPC Gateway
 
