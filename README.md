@@ -1,4 +1,4 @@
-# J on the Beach - Cloud native IPC for Microservices
+# From REST to GRPC - Cloud native IPC for Microservices
 
 This workshop focuses on modern and efficient Inter Process Communication (IPC) for microservices. We start with a REST API, built using JAX-RS and Quarkus to briefly discuss the pros and cons of this approach. Then, we will extend the API with an efficient Protobuf payload representation in order to finally transform the API into a fully fledged high-performance gRPC interface definition. But that’s not all! To put some extra icing on the cake, this workshop will demonstrate how to consume the gRPC service from a JavaScript web client and also how to completely generate a matching REST API from an enhanced gRPC interface definition to ensure full interoperability in a microservice architecture.
 
