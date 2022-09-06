@@ -8,8 +8,7 @@ gRPC-Gateway is a plugin of protoc. It reads a gRPC service definition and gener
 
 To setup your Go environment, follow the instructions found at https://github.com/grpc-ecosystem/grpc-gateway#installation
 
-go install will install into $GOPATH/bin, make sure that it is in your $PATH. If not: `export PATH="$PATH:$(go env GOPATH)/bin"`
-Otherwise buf generate will complain about missing plugins.
+Note that `go install` will install into `$GOPATH/bin`. In order that `buf` is able to find the installed plugins, make sure that the directory is in `$PATH`. If not, just add it: `export PATH="$PATH:$(go env GOPATH)/bin"`
 
 
 ## Code Generation using Buf
