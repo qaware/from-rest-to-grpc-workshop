@@ -194,9 +194,13 @@ with the following location: http://localhost:16969
 Connect to the address `grpc-beer-service:9090` and upload the Protobuf files from the `src/main/proto` directory.
 Then you can select and call the individual gRPC services.
 
-You may also enable the gRPC Server Reflection Protocol instead, by setting `quarkus.grpc.server.enable-reflection-service=true` in the application.properties file of the `quarkus-beer-grpc` project.
+Instead of uploading the Protobuf file manually, you may also enable the gRPC Server Reflection Protocol. 
+To do so, add `quarkus.grpc.server.enable-reflection-service=true` in the application.properties file of the `quarkus-beer-grpc` project.
+In the Quarkus dev mode, this setting is enabled by default.
 See also: https://quarkus.io/guides/grpc-service-implementation#reflection-service
 
+Instead of using the gRPC Web UI you may also use BloomRPC, a GUI client for gRPC services. 
+See also: https://github.com/bloomrpc/bloomrpc
 
 
 ## Bonus: gRPC Nginx LoadBalancer
