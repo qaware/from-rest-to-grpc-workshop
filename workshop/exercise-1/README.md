@@ -109,7 +109,7 @@ message DeleteBeerRequest {
 }
 ```
 
-# Using Protocoll Buffers with JAX-RS
+# Using Protocol Buffers with JAX-RS
 
 Protocol Buffers can be used in JAX-RS using a `MessageBodyReader` and `MessageBodyWriter` implementation.
 In order to use the generated Protobuf message payloads we need to implement a JAX-RS endpoint and methods.
