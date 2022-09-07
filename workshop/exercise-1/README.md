@@ -118,3 +118,8 @@ In order to use the generated Protobuf message payloads we need to implement a J
 - Copy the `ProtoResource.java` file into the `src/main/java/hands/on/grcp/` directory.
 - Copy the `ProtoResourceTest.java` file into the `src/test/java/hands/on/grcp/` directory.
 
+# How to test that it works
+
+You can execute the `ProtoResourceTest.java` that we just copied to the `src/test/java/hands/on/grcp/` directory.
+You may also try out `protocurl`: https://github.com/qaware/protocurl, which is cURL for Protobuf.
+
