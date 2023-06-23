@@ -48,6 +48,8 @@
 		"mutantdino.resourcemonitor",
 		"humao.rest-client",
 		"timonwong.shellcheck",
+		"vscjava.vscode-java-pack",
+		"vscjava.vscode-gradle"
 	],
 
 	"waitFor": "postCreateCommand",
