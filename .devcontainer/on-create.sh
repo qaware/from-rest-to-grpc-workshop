@@ -6,12 +6,12 @@ echo "on-create start"
 echo "$(date +'%Y-%m-%d %H:%M:%S')    on-create start" >> "$HOME/status"
 
 # clone repos
-#git clone https://github.com/cse-labs/imdb-app /workspaces/imdb-app
-#git clone https://github.com/microsoft/webvalidate /workspaces/webvalidate
+git clone https://github.com/cse-labs/imdb-app /workspaces/imdb-app
+git clone https://github.com/microsoft/webvalidate /workspaces/webvalidate
 
 # restore the repos
-#dotnet restore /workspaces/webvalidate/src/webvalidate.sln
-#dotnet restore /workspaces/imdb-app/src/imdb.csproj
+dotnet restore /workspaces/webvalidate/src/webvalidate.sln
+dotnet restore /workspaces/imdb-app/src/imdb.csproj
 
 export REPO_BASE=$PWD
 export PATH="$PATH:$REPO_BASE/cli"
@@ -32,9 +32,9 @@ k3d registry create registry.localhost --port 5500
 docker network connect k3d k3d-registry.localhost
 
 # update the base docker images
-#docker pull mcr.microsoft.com/dotnet/aspnet:6.0-alpine
-#docker pull mcr.microsoft.com/dotnet/sdk:6.0
-#docker pull ghcr.io/cse-labs/webv-red:latest
+docker pull mcr.microsoft.com/dotnet/aspnet:6.0-alpine
+docker pull mcr.microsoft.com/dotnet/sdk:6.0
+docker pull ghcr.io/cse-labs/webv-red:latest
 
 # echo "dowloading kic CLI"
 # cd cli || exit
@@ -51,12 +51,12 @@ kubectl completion zsh > "$HOME/.oh-my-zsh/completions/_kubectl"
 echo "creating k3d cluster"
 kic cluster rebuild
 
-#echo "bilding IMDb"
-#kic build imdb
+echo "bilding IMDb"
+kic build imdb
 
-#echo "building WebValidate"
-#sed -i "s/RUN dotnet test//g" /workspaces/webvalidate/Dockerfile
-#kic build webv
+echo "building WebValidate"
+sed -i "s/RUN dotnet test//g" /workspaces/webvalidate/Dockerfile
+kic build webv
 
 echo "deploying k3d cluster"
 kic cluster deploy
