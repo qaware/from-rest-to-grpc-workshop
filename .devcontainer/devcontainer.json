@@ -1,47 +1,64 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.241.1/containers/java
 {
-	"name": "Java",
-	"build": {
-		"dockerfile": "Dockerfile",
-		"args": {
-			// Update the VARIANT arg to pick a Java version: 11, 17
-			// Append -bullseye or -buster to pin to an OS version.
-			// Use the -bullseye variants on local arm64/Apple Silicon.
-			"VARIANT": "17-bullseye",
-			// Options
-			"INSTALL_MAVEN": "false",
-			"INSTALL_GRADLE": "false",
-			"NODE_VERSION": "lts/*"
-		}
+	"name": "Kubernetes-in-Codespaces",
+	"dockerFile": "Dockerfile",
+
+	// do not change these if you want Docker in Docker support
+	"runArgs": ["--init", "--privileged"],
+	"mounts": [ "source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind" ],
+	"overrideCommand": false,
+
+	// some base images require a specific user name
+	"remoteUser": "vscode",
+
+	// Set container specific settings
+	"settings": {
+		"terminal.integrated.defaultProfile.linux": "zsh",
+		"files.trimTrailingWhitespace": true,
+		"files.trimFinalNewlines": true,
+		"files.insertFinalNewline": true
 	},
 
-	// Configure tool-specific properties.
-	"customizations": {
-		// Configure properties specific to VS Code.
-		"vscode": {
-			// Set *default* container specific settings.json values on container create.
-			"settings": { 
-			},
-			
-			// Add the IDs of extensions you want installed when the container is created.
-			"extensions": [
-				"vscjava.vscode-java-pack"
-			]
-		}
+	"hostRequirements": {
+		"cpus": 4
 	},
 
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
+	// forward ports for the app
+	"forwardPorts": [
+//		30000,
+//		30080,
+//		31080,
+//		32000
+	],
+
+	// add labels
+	"portsAttributes": {
+//		"30000": { "label": "Prometheus" },
+//		"30080": { "label": "IMDb App" },
+//		"31080": { "label": "Heartbeat" },
+//		"32000": { "label": "Grafana" }
+	},
+
+	// Install extensions
+	"extensions": [
+		"ms-dotnettools.csharp",
+		"ms-azuretools.vscode-docker",
+		"ms-kubernetes-tools.vscode-kubernetes-tools",
+		"davidanson.vscode-markdownlint",
+		"gruntfuggly.todo-tree",
+		"mutantdino.resourcemonitor",
+		"humao.rest-client",
+		"timonwong.shellcheck",
+		"vscjava.vscode-java-pack"
+	],
+
+	"waitFor": "postCreateCommand",
+
+	// Use 'onCreateCommand' to run commands as part of container creation.
+	"onCreateCommand": "/bin/bash -c .devcontainer/on-create.sh",
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "java -version",
+	"postCreateCommand": "/bin/bash -c .devcontainer/post-create.sh",
 
-	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-	"remoteUser": "vscode",
-	"features": {
-		"docker-from-docker": "latest",
-		"kubectl-helm-minikube": "latest",
-		"golang": "latest"
-	}
+	// Use 'postStartCommand' to run commands after the container starts.
+	"postStartCommand": "/bin/bash -c .devcontainer/post-start.sh"
 }
