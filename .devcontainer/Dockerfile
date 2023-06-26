@@ -11,8 +11,5 @@ RUN echo "$(date +'%Y-%m-%d %H:%M:%S')    docker build start" >> /home/$USERNAME
 
 RUN chown -R $USERNAME:$USERNAME /home/$USERNAME
 
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-     && apt-get -y install --no-install-recommends golang
-
 # log the docker build complete
 RUN echo "$(date +'%Y-%m-%d %H:%M:%S')    docker build complete" >> /home/$USERNAME/status

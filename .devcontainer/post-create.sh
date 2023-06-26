@@ -38,6 +38,18 @@ sudo chmod +x "${BIN}/buf"
 
 echo "Done"
 
+echo "Installing Golang"
+
+wget https://go.dev/dl/go1.20.5.linux-amd64.tar.gz
+
+rm -rf /usr/local/go && tar -C /usr/local -xzf go1.20.5.linux-amd64.tar.gz
+
+export PATH=$PATH:/usr/local/go/bin
+
+echo "Installed Go Version: "$(go version)
+
+echo "Done"
+
 echo "Executing go mod tidy"
 
 go mod tidy
