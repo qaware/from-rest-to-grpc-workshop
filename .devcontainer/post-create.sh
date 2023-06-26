@@ -44,25 +44,33 @@ wget https://go.dev/dl/go1.20.5.linux-amd64.tar.gz
 
 sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.20.5.linux-amd64.tar.gz
 
+rm https://go.dev/dl/go1.20.5.linux-amd64.tar.gz
+
 export PATH=$PATH:/usr/local/go/bin
 
 echo "Installed Go Version: "$(go version)
 
 echo "Done"
 
-echo "Executing go mod tidy"
+echo "Executing go install for grpc-gateway"
+
+cd grpc-beer-gateway
 
 go mod tidy
-
-echo "Done"
-
-echo "Executing go install for grpc-gateway"
 
 go install \
     github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway \
     github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2 \
     google.golang.org/protobuf/cmd/protoc-gen-go \
     google.golang.org/grpc/cmd/protoc-gen-go-grpc
+
+cd ..
+
+echo "Done"
+
+echo "Updating PATH with Go bin directory"
+
+export PATH="$PATH:$(go env GOPATH)/bin"
 
 echo "Done"
 
