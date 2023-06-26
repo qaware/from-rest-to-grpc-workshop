@@ -22,3 +22,11 @@ echo"Installed Tilt"
 
 echo "post-create complete"
 echo "$(date +'%Y-%m-%d %H:%M:%S')    post-create complete" >> "$HOME/status"
+
+# Check: https://github.com/bufbuild/buf/releases for latest version
+BIN="/usr/local/bin" && \
+VERSION="1.22.0" && \
+sudo curl -sSL \
+"https://github.com/bufbuild/buf/releases/download/v${VERSION}/buf-$(uname -s)-$(uname -m)" \
+-o "${BIN}/buf" && \
+sudo chmod +x "${BIN}/buf"
