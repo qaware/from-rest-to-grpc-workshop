@@ -5,23 +5,28 @@
 echo "post-create start"
 echo "$(date)    post-create start" >> "$HOME/status"
 
+echo "Installing SDK MAN"
 # update the repos
 #git -C /workspaces/imdb-app pull
 #git -C /workspaces/webvalidate pull
 curl -s "https://get.sdkman.io" | bash
 source "$HOME/.sdkman/bin/sdkman-init.sh"
-echo "Installed SDK MAN"
+
+echo "Done"
+
+echo "Installing Java 17.0.7-zulu"
 
 sdk install java 17.0.7-zulu
 
-echo "Installed Java 17.0.7-zulu"
+echo "Done"
+
+echo "Installing Tilt"
 
 curl -fsSL https://raw.githubusercontent.com/tilt-dev/tilt/master/scripts/install.sh | bash
 
-echo"Installed Tilt"
+echo "Done"
 
-echo "post-create complete"
-echo "$(date +'%Y-%m-%d %H:%M:%S')    post-create complete" >> "$HOME/status"
+echo "Installing Buf"
 
 # Check: https://github.com/bufbuild/buf/releases for latest version
 BIN="/usr/local/bin" && \
@@ -30,3 +35,24 @@ sudo curl -sSL \
 "https://github.com/bufbuild/buf/releases/download/v${VERSION}/buf-$(uname -s)-$(uname -m)" \
 -o "${BIN}/buf" && \
 sudo chmod +x "${BIN}/buf"
+
+echo "Done"
+
+echo "Executing go mod tidy"
+
+go mod tidy
+
+echo "Done"
+
+echo "Executing go install for grpc-gateway"
+
+go install \
+    github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway \
+    github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2 \
+    google.golang.org/protobuf/cmd/protoc-gen-go \
+    google.golang.org/grpc/cmd/protoc-gen-go-grpc
+
+echo "Done"
+
+echo "post-create complete"
+echo "$(date +'%Y-%m-%d %H:%M:%S')    post-create complete" >> "$HOME/status"
