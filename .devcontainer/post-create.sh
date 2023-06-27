@@ -48,7 +48,15 @@ sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf ${GO_INSTALL_FILE}
 
 rm ${GO_INSTALL_FILE}
 
+echo "PATH has the following value:"
+echo $PATH
+
+echo "Updating PATH"
+
 export PATH=$PATH:/usr/local/go/bin
+
+echo "PATH has the following value now:"
+echo $PATH
 
 echo "Installed Go Version: "$(go version)
 
@@ -70,9 +78,42 @@ cd ..
 
 echo "Done"
 
+echo "PATH has the following value:"
+echo $PATH
+
 echo "Updating PATH with Go bin directory"
 
 export PATH="$PATH:$(go env GOPATH)/bin"
+
+echo "PATH has the following value now:"
+echo $PATH
+
+echo "Done"
+
+echo "Installing protobuf-javascript"
+
+wget https://github.com/protocolbuffers/protobuf-javascript/releases/download/v3.21.2/protobuf-javascript-3.21.2-linux-x86_64.tar.gz
+
+sudo tar -C /usr/local/protobuf-javascript -xzf protobuf-javascript-3.21.2-linux-x86_64.tar.gz
+
+rm protobuf-javascript-3.21.2-linux-x86_64.tar.gz
+
+echo "Done"
+
+echo "Installing protoc-gen-grpc-web"
+
+wget https://github.com/grpc/grpc-web/releases/download/1.4.2/protoc-gen-grpc-web-1.4.2-linux-x86_64
+
+sudo mv protoc-gen-grpc-web-1.4.2-linux-x86_64 /usr/local/bin/protoc-gen-grpc-web
+
+chmod +x /usr/local/bin/protoc-gen-grpc-web
+
+echo "Done"
+
+echo "Installing NodeJS + NPM"
+
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash - &&\
+sudo apt-get install -y nodejs
 
 echo "Done"
 
