@@ -40,12 +40,9 @@ echo "Done"
 
 echo "Installing Golang"
 
-GO_INSTALL_FILE = "go1.20.5.linux-amd64.tar.gz"
-
-wget "https://go.dev/dl/${GO_INSTALL_FILE}"
-
-sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf ${GO_INSTALL_FILE}
-
+GO_INSTALL_FILE = "go1.20.5.linux-amd64.tar.gz" && \
+wget "https://go.dev/dl/${GO_INSTALL_FILE}" && \
+sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf ${GO_INSTALL_FILE}  && \
 rm ${GO_INSTALL_FILE}
 
 echo "PATH has the following value:"
