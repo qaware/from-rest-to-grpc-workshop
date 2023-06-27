@@ -42,18 +42,10 @@
 
 	// forward ports for the app
 	"forwardPorts": [
-//		30000,
-//		30080,
-//		31080,
-//		32000
 	],
 
 	// add labels
 	"portsAttributes": {
-//		"30000": { "label": "Prometheus" },
-//		"30080": { "label": "IMDb App" },
-//		"31080": { "label": "Heartbeat" },
-//		"32000": { "label": "Grafana" }
 	},
 
 	"waitFor": "postCreateCommand",
