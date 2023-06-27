@@ -63,12 +63,14 @@ static_resources:
 
 The process of generating the required JavaScript and TS sources from the Proto files is a bit tedious when done by hand or calling the protoc compiler on the command line. The tool Buf greatly simplifies the process.
 
-First we need to configure Buf with the correct dependencies and proto source roots. Create a file `buf.yaml` in the `grpc-beer-javascript/` directory with the following content.
+First we need to configure Buf with the correct dependencies and proto source roots. Create a file `buf.yaml` in the `grpc-beer-javascript/beerapis` directory with the following content.
 ```yaml
 version: v1
 deps:
   - buf.build/googleapis/googleapis
 ```
+
+Run `buf mod update` in the `grpc-beer-javascript/beerapis` directory, which generates a `buf.lock` file.
 
 Next we need to configure the JS and grpc-web protoc plugins used to generate the required JavaScript and TS source files. Create a file `buf.gen.yaml` in the `grpc-beer-javascript/` directory with the following content.
 ```yaml
@@ -91,7 +93,9 @@ directories:
 ```
 
 
-Finally, you have to run `buf generate` to generate all the artifacts from the proto file.
+
+Finally, you have to run `buf generate` in the `grpc-beer-javascript/` directory to generate all the artifacts from the proto file. 
+
 
 On MacOS you may get the following error because of an open issue: https://github.com/protocolbuffers/protobuf-javascript/issues/127
 ```

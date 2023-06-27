@@ -26,7 +26,7 @@ deps:
   - buf.build/grpc-ecosystem/grpc-gateway
 ```
 
-Run `buf mod update` in the `grpc-beer-gateway/beerapis` directory, which generates a buf.lock file.
+Run `buf mod update` in the `grpc-beer-gateway/beerapis` directory, which generates a `buf.lock` file.
 
 Next we need to configure the different protoc plugins used to generate the required Go source files as well as an OpenAPIv2 definition of the REST interface. Create a file `buf.gen.yaml` in the `grpc-beer-gateway/` directory with the following content. 
 ```yaml
