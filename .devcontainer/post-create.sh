@@ -40,11 +40,13 @@ echo "Done"
 
 echo "Installing Golang"
 
-wget https://go.dev/dl/go1.20.5.linux-amd64.tar.gz
+GO_INSTALL_FILE = "go1.20.5.linux-amd64.tar.gz"
 
-sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.20.5.linux-amd64.tar.gz
+wget "https://go.dev/dl/${GO_INSTALL_FILE}"
 
-rm https://go.dev/dl/go1.20.5.linux-amd64.tar.gz
+sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf ${GO_INSTALL_FILE}
+
+rm ${GO_INSTALL_FILE}
 
 export PATH=$PATH:/usr/local/go/bin
 
