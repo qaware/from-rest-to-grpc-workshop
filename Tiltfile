@@ -33,3 +33,6 @@ k8s_resource(workload='rest-beer-service', port_forwards=[port_forward(18080, 80
 # k8s_yaml(['grpc-beer-envoy/k8s/deployment.yaml', 'grpc-beer-envoy/k8s/service.yaml'])
 # k8s_resource(workload='grpc-beer-envoy', port_forwards=[port_forward(18091, 8091, 'gRPC Web')], labels=['gRPC'])
 
+# docker_build('grpc-beer-javascript', './grpc-beer-javascript/', dockerfile='grpc-beer-javascript/Dockerfile')
+# k8s_yaml(['grpc-beer-javascript/k8s/deployment.yaml', 'grpc-beer-javascript/k8s/service.yaml'])
+# k8s_resource(workload='grpc-beer-javascript', port_forwards=[port_forward(19999, 9999, 'gRPC JavaScript UI')], labels=['gRPC'])
