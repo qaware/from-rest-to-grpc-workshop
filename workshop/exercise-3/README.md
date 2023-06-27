@@ -16,7 +16,7 @@ Note that `go install` will install into `$GOPATH/bin`. In order that `buf` is a
 The process of generating the required Go sources from the Proto files is a bit tedious when done by hand or
 calling the protoc compiler on the command line. The tool Buf greatly simplifies the process.
 
-First we need to configure Buf with the correct dependencies and proto source roots. Create a file `buf.yaml` in the `grpc-beer-gateway/` directory with the following content.
+First we need to configure Buf with the correct dependencies and proto source roots. Create a file `buf.yaml` in the `grpc-beer-gateway/beerapis` directory with the following content.
 ```yaml
 version: v1
 deps:
@@ -25,6 +25,8 @@ deps:
   # add proto definitions for gRPC gateway as dependency
   - buf.build/grpc-ecosystem/grpc-gateway
 ```
+
+Run `buf mod update` in the `grpc-beer-gateway/beerapis` directory, which generates a buf.lock file.
 
 Next we need to configure the different protoc plugins used to generate the required Go source files as well as an OpenAPIv2 definition of the REST interface. Create a file `buf.gen.yaml` in the `grpc-beer-gateway/` directory with the following content. 
 ```yaml
@@ -48,7 +50,7 @@ Also create a file `buf.work.yaml` with the following content:
 ```yaml
 version: v1
 directories:
-  - proto
+  - beerapis
 ```
 
 Finally, you have to run `buf generate` in the `grpc-beer-gateway/` directory to generate all the artifacts from the proto file.
