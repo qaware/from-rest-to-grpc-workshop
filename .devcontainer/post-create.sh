@@ -40,7 +40,7 @@ echo "Done"
 
 echo "Installing Golang"
 
-GO_INSTALL_FILE = "go1.20.5.linux-amd64.tar.gz" && \
+GO_INSTALL_FILE="go1.20.5.linux-amd64.tar.gz" && \
 wget "https://go.dev/dl/${GO_INSTALL_FILE}" && \
 sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf ${GO_INSTALL_FILE}  && \
 rm ${GO_INSTALL_FILE}
@@ -91,7 +91,7 @@ echo "Installing protobuf-javascript"
 
 wget https://github.com/protocolbuffers/protobuf-javascript/releases/download/v3.21.2/protobuf-javascript-3.21.2-linux-x86_64.tar.gz
 
-sudo tar -C /usr/local/protobuf-javascript -xzf protobuf-javascript-3.21.2-linux-x86_64.tar.gz
+sudo tar -C /usr/local -xzf protobuf-javascript-3.21.2-linux-x86_64.tar.gz
 
 rm protobuf-javascript-3.21.2-linux-x86_64.tar.gz
 
