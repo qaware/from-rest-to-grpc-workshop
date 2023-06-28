@@ -109,6 +109,8 @@ message DeleteBeerRequest {
 }
 ```
 
+Execute `./gradlew build` after this step and check if the proto files have been generated.
+
 # Using Protocol Buffers with JAX-RS
 
 Protocol Buffers can be used in JAX-RS using a `MessageBodyReader` and `MessageBodyWriter` implementation.
@@ -118,8 +120,16 @@ In order to use the generated Protobuf message payloads we need to implement a J
 - Copy the `ProtoResource.java` file into the `src/main/java/hands/on/grcp/` directory.
 - Copy the `ProtoResourceTest.java` file into the `src/test/java/hands/on/grcp/` directory.
 
+Execute `./gradlew build` after this step and check if it succeeds.
+
 # How to test that it works
 
 You can execute the `ProtoResourceTest.java` that we just copied to the `src/test/java/hands/on/grcp/` directory.
 You may also try out `protocurl`: https://github.com/qaware/protocurl, which is cURL for Protobuf.
 
+You can run the following command in the `quarkus-beer-rest` directory:
+```
+docker run -v "$PWD/src/main/proto:/proto" --network host qaware/protocurl \
+-f beer.proto -i beer.GetBeersRequest -o beer.GetBeersResponse \
+-u http://localhost:18080/api/proto/getBeers -d ""
+```

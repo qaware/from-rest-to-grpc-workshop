@@ -1,5 +1,7 @@
 # Environment Setup
 
+If you use Github Codespaces all Tooling is already installed for you! So you can simply proceed with the next exercise :) 
+
 ## Java Development Environment 
 
 You need an IDE of your choice as well as JDK11 to implement the microservices.

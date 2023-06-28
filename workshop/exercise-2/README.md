@@ -102,6 +102,8 @@ message DeleteBeerRequest {
 }
 ```
 
+Execute `./gradlew build` after this step and check if the proto files have been generated.
+
 ## gRPC Service and Test Client Implementation
 
 In the application package, create a new Java file for the class `BeerGrpcService`. Override and implement
@@ -167,7 +169,7 @@ public class BeerGrpcService extends BeerServiceGrpc.BeerServiceImplBase {
 ```
 
 To test and call the implementation we can write a Quarkus JUnit5 test. Create a new Java file for the test class `BeerGrpcServiceTest` under `src/test/java`. Alternatively, use the `BeerGrpcServiceTest.java` file
-from the exercise directory.
+from the exercise directory. 
 
 ```java
 @QuarkusTest
