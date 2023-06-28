@@ -45,11 +45,11 @@ docker network connect k3d k3d-registry.localhost
 # cd "$OLDPWD" || exit
 
 echo "generating completions"
-kic completion zsh > "$HOME/.oh-my-zsh/completions/_kic"
+#kic completion zsh > "$HOME/.oh-my-zsh/completions/_kic"
 kubectl completion zsh > "$HOME/.oh-my-zsh/completions/_kubectl"
 
 echo "creating k3d cluster"
-kic cluster rebuild
+#kic cluster rebuild
 
 #echo "bilding IMDb"
 #kic build imdb
@@ -59,7 +59,7 @@ kic cluster rebuild
 #kic build webv
 
 echo "deploying k3d cluster"
-kic cluster deploy
+#kic cluster deploy
 
 # only run apt upgrade on pre-build
 if [ "$CODESPACE_NAME" = "null" ]
