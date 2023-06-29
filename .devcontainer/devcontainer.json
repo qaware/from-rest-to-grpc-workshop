@@ -1,4 +1,6 @@
 {
+	// The following Github repository was used as template for Kubernetes in Codespace:
+	// https://github.com/cse-labs/kubernetes-in-codespaces
 	"name": "Kubernetes-in-Codespaces",
 	"dockerFile": "Dockerfile",
 
